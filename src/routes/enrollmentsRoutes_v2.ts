@@ -106,7 +106,6 @@ router.post(
   }
 );
 
-//  POST /api/v2/enrollments/:studentId
 router.post(
   "/:studentId",
   authenticateToken,
@@ -164,7 +163,6 @@ router.post(
   }
 );
 
-//DELETE /api/v2/enrollments/:studentId
 router.delete(
   "/:studentId",
   authenticateToken,
@@ -181,16 +179,17 @@ router.delete(
         });
       }
 
-      if(req.user?.studentId !== req.body.studentId){
+      if (req.user?.studentId !== req.body.studentId) {
         return res.status(403).json({
           success: false,
-          message: "You are not allowed to modify another student's data"
-        })
+          message: "You are not allowed to modify another student's data",
+        });
       }
 
-      const foundIndex = enrollments.findIndex(
-        (std) => std.studentId === body.studentId
+      const foundIndex = students.findIndex(
+        (std) => std.studentId === req.params.studentId
       );
+      students[foundIndex]?.courses?.push(body.courseId);
 
       if (foundIndex === -1) {
         return res.status(404).json({
@@ -200,11 +199,11 @@ router.delete(
       }
 
       // delete found student from array
-      students.splice(foundIndex, 1);
+      enrollments.splice(foundIndex, 1);
       res.json({
         success: true,
         message: `Student ${req.params.studentId} && Course ${req.body.courseId} has been deleted successfully`,
-        data: enrollments
+        data: enrollments,
       });
     } catch (err) {
       return res.status(500).json({
