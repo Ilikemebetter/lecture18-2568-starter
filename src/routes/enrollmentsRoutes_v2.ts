@@ -106,6 +106,7 @@ router.post(
   }
 );
 
+//  POST /api/v2/enrollments/:studentId
 router.post(
   "/:studentId",
   authenticateToken,
@@ -163,6 +164,7 @@ router.post(
   }
 );
 
+//DELETE /api/v2/enrollments/:studentId
 router.delete(
   "/:studentId",
   authenticateToken,
