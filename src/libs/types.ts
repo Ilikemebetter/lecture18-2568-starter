@@ -15,8 +15,8 @@ interface Course {
 export type { Course };
 
 interface Enrollment {
-  studentId: string;
-  courseId: string;
+  studentId?: string| null;
+  courseId?: string| null;
 }
 export type { Enrollment };
 
