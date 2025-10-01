@@ -12,9 +12,9 @@ import { students, courses } from "../db/db.js";
 
 const router = Router();
 
-// GET /api/v2/students
+// GET /api/v2/students 
 // get students (by program)
-router.get("/", (req: Request, res: Response) => {
+router.get("/", (req: Request, res: Response) => { // มันคือการเอา/ ไปต่อท้าย /api/v2/students/
   try {
     const program = req.query.program;
 

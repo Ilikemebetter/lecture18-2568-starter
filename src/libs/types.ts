@@ -3,14 +3,14 @@ interface Student {
   firstName: string;
   lastName: string;
   program: "CPE" | "ISNE";
-  courses?: string[];
+  courses?: string[]; //มีหลายวิชาได้
 }
 export type { Student };
 
 interface Course {
   courseId: string;
   courseTitle: string;
-  instructors: string[];
+  instructors: string[]; //มีหลายคนได้
 }
 export type { Course };
 
